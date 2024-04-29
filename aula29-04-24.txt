@@ -1,0 +1,31 @@
+---- membro ----
+
+membro(A, [A|X]).
+membro(A, [B|X]) :- membro(A,X).
+
+
+---- interseccao ----
+inter([],_,[])
+inter(_,[],[])
+inter([A|X],L,[A|Z]) :- membro(A,L), inter(X,L,Z).
+inter([A|X],L,Z) :- inter(X,L,Z).
+
+---- deleta primeria ocorrencia ----
+
+
+
+---- deleta todas as ocorrencias ----
+delall(Elem, [], []).
+delall(Elem, [Elem|X], Z) :- delall(Elem, X, Z).
+delall(Elem, [A|X], [A|Z]) :- delall(Elem, X, Z).
+
+---- substitui 3 por 5 ----
+troca35([],[])
+troca35([3|X], [5|Z]) :- troca35(X,Z).
+troca35([A|X], [A|Z]) :- troca35 (A|Z)
+
+---- split ----
+split([], [], [])
+split([A], [A], [])
+split ([A,B|X], [A|As], [B|Bs]) :- split(X, As, Bs).
+
