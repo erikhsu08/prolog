@@ -19,3 +19,16 @@ no terminal:
 R1 = [1,2,3]
 R2 = [4,5]
 
+-------------------------------------------------------------
+intercala([], L, L).
+intercala(L, [], L).
+intercala([A|As], [B|Bs], [A|X]):- A =< B, intercala(As, [B|Bs], X).
+intercala([A|As], [B|Bs], [B|X]):- intercala([A|As], Bs, X).
+
+no terminal:
+>intercala([1,2,9,15], [3,7,29,30], R).
+R = [1,2,3,7,9,15,29,30]
+
+
+
+
