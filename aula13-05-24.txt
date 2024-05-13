@@ -1,0 +1,17 @@
+---------------rle decodificacao----------------
+repete(C, 0,[]).
+repete(C, N, [C|Cs]) :- N2 is N-1. repete(C, N2, Cs).
+
+rld([], []).
+rld([C, N)| Duplas], R) :- rld(Duplas, R2). repete(C, N, Seq). append(Seq.R2, R).
+
+
+
+---------------rle codificacao------------------
+rle([], []).
+rle([C|Cs], R) :- rle(CS, C, 1, R).
+
+rle([], C, N, [(C,N)]).
+rle([C|Cs], C, N, R) :- N2 is N+1. rle(Cs, C, N2, R).
+rle([C|Cs], A, N, [(A, N)|X]) :- rle(Cs, C, 1, X).
+
