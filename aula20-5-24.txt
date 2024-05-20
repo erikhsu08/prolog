@@ -1,0 +1,39 @@
+arvore:
+t1(no(5,
+        no(3,
+            no(3,f(4),f(4)),
+            f(3)),
+        no(3,f(4),f(5)))).
+
+
+-----------altura do no----------------
+
+h(f(_),1).
+h(no(_,Te,Td),H):- h(Te,He), h(Td, Hd), maior(He,Hd,Hvenc), H is 1 + Hvenc.
+
+maior(A, B, A):- A > B.
+maior(A, B, B):- B >= A.
+
+---------troca valor do no pela sua altura-----------
+trocaH(F(_),f(1)).
+trocaH(no(_,Te,Td),no(H,Te2,Td2)):-
+  h(no(_,Te,Td),H),
+  trocaH(Te,Te2),
+  trocaH(Td,Td2).
+
+
+----------troca valor por num de ocorrencias-------------
+
+trocaQ(Tree1,Tree2):- trocaQ(Tree1,Tree1,Tree2).
+
+trocaQ(f(Val(,Tree,f(N)):- qtd(Val,Tree,N).
+trocaQ(no(Val,Te,Td),Tree,no(N,Te2,Td2)):-
+  qtd(Val,Tree,N),
+  trocaQ(Te,Tree,Te2),
+  trocaQ(Td,Tree,Td2).
+
+qtd(Val, f(Val), 1).
+qtd(V1,f(V2), 0).
+qtd(Val, no(Val,Te,Td), N):- qtd(Val,Te,Ne), qtd(Val,Td,Nd), N is 1 + Ne + Nd.
+qtd(Val, no(V,Te,Td), N):- qtd(Val,Te,Ne), qtd(Val,Td,Nd), N is Ne + Nd.
+
